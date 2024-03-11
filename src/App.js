@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React from 'react';
+import NavbarTop from './components/Navbar';
+import ProductList from './components/Product/ProductList';
+import Typography from '@mui/material/Typography';
+import Footer from './components/Footer/Footer';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavbarTop/>
+      <Typography sx={{mt:2,color:'blueviolet',fontFamily:'serif',fontSize:'60px',textAlign:'center'}}>Music</Typography>
+      <ProductList/>
+      <Footer/>
     </div>
   );
 }
