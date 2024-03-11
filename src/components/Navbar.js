@@ -14,7 +14,7 @@ import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
-function NavbarTop() {
+function NavbarTop({openCart}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -113,7 +113,7 @@ function NavbarTop() {
               </Button>
             ))}
           </Box>
-          <ShoppingCartTwoToneIcon/>
+          <ShoppingCartTwoToneIcon onClick={()=>openCart()}/>
         </Toolbar>
       </Container>
     </AppBar>
