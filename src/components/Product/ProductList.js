@@ -1,11 +1,14 @@
 import  Container from "@mui/material/Container"
 import Grid from "@mui/material/Grid"
 import Product from "./Product"
+import { useContext } from "react"
+import CartContext from "../../utils/CartContext"
 
 const productsArr = [
 
     {
-    
+    id:1,
+
     title: 'Colors',
     
     price: 100,
@@ -15,7 +18,7 @@ const productsArr = [
     },
     
     {
-    
+    id:2,
     title: 'Black and white Colors',
     
     price: 50,
@@ -25,7 +28,7 @@ const productsArr = [
     },
     
     {
-    
+    id:3,
     title: 'Yellow and Black Colors',
     
     price: 70,
@@ -35,6 +38,7 @@ const productsArr = [
     },
     
     {
+        id:4,
     
     title: 'Blue Color',
     
@@ -46,13 +50,18 @@ const productsArr = [
     
     ]
 export default function ProductList(){
+    const CartCtx = useContext(CartContext)
+    console.log(CartCtx.items)
+    function addProduct(item){
+       CartCtx.addToCart(item)
+    }
     return(
-        <Container maxWidth="md">
+        <Container maxWidth="md" key={1}>
             <Grid container spacing={2}>
                 {productsArr.map((product)=>{
                     return(
-                    <Grid item xs={5} >
-                    <Product product={product}/>
+                    <Grid item xs={5} key={product.id} >
+                    <Product product={product} addProduct={addProduct} />
                  </Grid>
                 )})}
             </Grid>
