@@ -3,10 +3,12 @@ import React from "react";
 const CartContext = React.createContext({
     items:[],
     addToCart:(item)=>{},
-    removeItem:()=>{}
+    removeItem:()=>{},
+    openCloseCart:()=>{},
+    isCartOpen:false
 })
 export function CartProvider(props){
-
+    const[isCartOpen,changeCartState]=useState(false)
     const [items,changeItem]= useState([]);
 
     function addToCart(item){
@@ -32,8 +34,12 @@ export function CartProvider(props){
         changeItem([...newItem])
     }
 
+    function openCloseCart(value){
+        changeCartState(value)
+    }
+
     return(
-        <CartContext.Provider value={{items:items,addToCart:addToCart,removeItem:removeItem}}>
+        <CartContext.Provider value={{items:items,addToCart:addToCart,removeItem:removeItem,openCloseCart:openCloseCart,isCartOpen:isCartOpen}}>
             {props.children}
         </CartContext.Provider>
     )

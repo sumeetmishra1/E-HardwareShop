@@ -1,24 +1,28 @@
 import React from 'react';
-import NavbarTop from './components/Navbar';
-import ProductList from './components/Product/ProductList';
-import Typography from '@mui/material/Typography';
-import Footer from './components/Footer/Footer';
+import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
+import Home from './pages/Home';
+import  Root  from './pages/Root';
+import AboutPage from './pages/About';
 function App() {
-  const [isOpen, setOpen] = React.useState(false);
-  function openCart(){
-    setOpen(true)
-  }
-  function closeCart(){
-    setOpen(false)
-  }
+  
+  const router = createBrowserRouter([
+    {
+      path:'/',
+      element:<Root/>,
+      children:[
+        {path:'/', element:<Home/>},
+        {path:'/about', element:<AboutPage/>}
+      ]
+    }
+    
+  ])
+
   return (
-    <div className="App">
-      <NavbarTop openCart={openCart} />
-      <Cart openCart={isOpen} closeCart={closeCart} />
-      <Typography sx={{mt:2,color:'blueviolet',fontFamily:'serif',fontSize:'60px',textAlign:'center'}}>Music</Typography>
-      <ProductList/>
-      <Footer/>
+    <div >
+      <Cart />
+      <RouterProvider router={router}/>
+      
     </div>
   );
 }

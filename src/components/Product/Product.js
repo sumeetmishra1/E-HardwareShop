@@ -3,10 +3,10 @@ import  Box from "@mui/material/Box"
  import  Typography  from "@mui/material/Typography"
  import { useContext } from "react"
 import CartContext from "../../utils/CartContext"
- export default function Product({product={},addProduct=()=>{}}){
+ export default function Product({product={}}){
     const CartCtx = useContext(CartContext)
     return(
-        <Box>
+        <Box sx={{position:'relative' }}>
              <Typography sx={{textAlign:'center'}}>{product.title}</Typography>
             <img
             src={product.imageUrl}
