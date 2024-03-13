@@ -41,7 +41,9 @@ const cartCtx= React.useContext(CartContext)
           </Typography>
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <NavLink to={'/about'} style={{textDecoration:'none'}}><Typography sx={{ my: 2, color: 'white', display: 'block' }}>About</Typography></NavLink>
+            <NavLink to={'/'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block', }}>Home</Typography></NavLink>
+            <NavLink to={'/store'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>Store</Typography></NavLink>
+            <NavLink to={'/about'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>About</Typography></NavLink>
           </Box>
           <ShoppingCartTwoToneIcon onClick={()=>cartCtx.openCloseCart(true)}/>
         </Toolbar>

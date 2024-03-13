@@ -1,4 +1,4 @@
-import About from "../components/Cart/About/About"
+import About from "../components/About/About.js"
 export default function AboutPage(){
     return(
         <About/>
