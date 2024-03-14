@@ -1,6 +1,7 @@
-import { Typography } from "@mui/material";
+import { Typography ,Button} from "@mui/material";
 import { useEffect, useState } from "react";
 import Movie from "./Movie";
+import MovieForm from "./MovieForm";
 export  default function Movies (){
     const[movies,channgeMovie]=useState([])
     const[isLoading,changeLoadingState] = useState(false);
@@ -27,12 +28,13 @@ export  default function Movies (){
     return(
 
         <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
-        <Typography sx={{mt:10,color:'black',fontFamily:'serif',fontSize:'60px',textAlign:'center'}}>Users</Typography>
-        <button onClick={movieHandler}>Fetch Users</button>
+        <MovieForm />
+        <Typography sx={{color:'black',fontFamily:'serif',fontSize:'60px',textAlign:'center'}}>Users</Typography>
+        <Button onClick={movieHandler}>Fetch Users</Button>
         {isError && <p>Something Went Wrong</p>}
         {isLoading?<h1>Loading</h1>:
         movies.map(movie=>{
-          return <Movie details={movie}/>
+          return <Movie key={movie.id} details={movie} />
           })}
         </div>
     )
