@@ -1,29 +1,33 @@
 import React from 'react';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import Home from './pages/Home';
-import  Root  from './pages/Root';
 import AboutPage from './pages/About';
 import Store from './pages/Store';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer/Footer';
+import { Contact } from './pages/Contact';
 function App() {
   
-  const router = createBrowserRouter([
-    {
-      path:'/',
-      element:<Root/>,
-      children:[
-        {path:'/', element:<Home/>},
-        {path:'/about', element:<AboutPage/>},
-        {path:'/store',element:<Store/>}
-      ]
-    }
-    
-  ])
 
   return (
     <div >
+      <Navbar/>
       <Cart />
-      <RouterProvider router={router}/>
+      <Route path="/home">
+        <Home/>
+      </Route>
+      <Route path="/contact">
+        <Contact/>
+      </Route>
+      <Route path="/about" >
+        <AboutPage/>
+      </Route>
+      <Route path="/store" >
+        <Store/>
+      </Route>
+      
+      <Footer/>
       
     </div>
   );
