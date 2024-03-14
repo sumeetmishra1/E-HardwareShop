@@ -14,10 +14,16 @@ export  default function Movies (){
         try{
         changeLoadingState(true)
         setIsError(false)
-        let data = await fetch('https://reqres.in/api/users?page=2')
+        let data = await fetch('https://e-commerce-comm-default-rtdb.firebaseio.com/movies.json')
         data = await data.json()
+
+        const moviesArr = []
+        for( const key in data){
+            moviesArr.push(data[key])
+        }
+        console.log(data)
         changeLoadingState(false)
-        channgeMovie(data.data)
+        channgeMovie(moviesArr)
         }
         catch(e){
             changeLoadingState(false)
@@ -29,8 +35,8 @@ export  default function Movies (){
 
         <div style={{display:'flex',alignItems:'center',justifyContent:'center',flexDirection:'column'}}>
         <MovieForm />
-        <Typography sx={{color:'black',fontFamily:'serif',fontSize:'60px',textAlign:'center'}}>Users</Typography>
-        <Button onClick={movieHandler}>Fetch Users</Button>
+        <Typography sx={{color:'black',fontFamily:'serif',fontSize:'60px',textAlign:'center'}}>Movies</Typography>
+        <Button onClick={movieHandler}>Fetch Movies</Button>
         {isError && <p>Something Went Wrong</p>}
         {isLoading?<h1>Loading</h1>:
         movies.map(movie=>{
