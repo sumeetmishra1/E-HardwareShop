@@ -19,14 +19,14 @@ const cartCtx= React.useContext(CartContext)
     <AppBar  sx={{position:'fixed',top:0,left:0}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <NavLink  to={'/home'} style={{textDecoration:'none'}}>
+          <NavLink  to={'/'} style={{textDecoration:'none'}}>
           <ConstructionIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           </NavLink>
           <Typography
             variant="h6"
             noWrap
             component="a"
-            href="/home"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -41,7 +41,7 @@ const cartCtx= React.useContext(CartContext)
           </Typography>
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            <NavLink to={'/home'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block', }}>Home</Typography></NavLink>
+            <NavLink to={'/'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block', }}>Home</Typography></NavLink>
             <NavLink to={'/store'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>Store</Typography></NavLink>
             <NavLink to={'/about'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>About</Typography></NavLink>
             <NavLink to={'/contact'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>Contact</Typography></NavLink>
