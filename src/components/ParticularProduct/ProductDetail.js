@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Rating from '@mui/material/Rating';
 import ProductImage from "./ProductImage";
-export function ProductDetails() {
+export function ProductDetails({product={}}) {
   return (
     <Container sx={{ m: 10, backgroundColor: 'white',fontFamily:'fantasy' }}>
         <CssBaseline />

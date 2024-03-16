@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer/Footer';
 import { Contact } from './pages/Contact';
 import { ProductDetails } from './components/ParticularProduct/ProductDetail';
+import { SignUp } from './pages/SignUp';
 function App() {
   
 
@@ -19,6 +20,9 @@ function App() {
       <Switch>
       <Route path="/" exact>
         <Home/>
+      </Route>
+      <Route path = "/signup">
+        <SignUp/>
       </Route>
       <Route path="/contact">
         <Contact/>
