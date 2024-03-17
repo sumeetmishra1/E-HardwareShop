@@ -11,10 +11,13 @@ import ConstructionIcon from '@mui/icons-material/Construction';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import { NavLink } from 'react-router-dom';
 import CartContext from '../utils/CartContext';
+import { Button } from '@mui/material';
+import AuthContext from '../utils/AuthContext';
 
 
 function Navbar() {
 const cartCtx= React.useContext(CartContext)
+const authCtx = React.useContext(AuthContext)
   return (
     <AppBar  sx={{position:'fixed',top:0,left:0}}>
       <Container maxWidth="xl">
@@ -46,6 +49,7 @@ const cartCtx= React.useContext(CartContext)
             <NavLink to={'/about'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>About</Typography></NavLink>
             <NavLink to={'/contact'} style={{textDecoration:'none'}}><Typography sx={{ m: 2, color: 'white', display: 'block' }}>Contact</Typography></NavLink>
           </Box>
+          {authCtx.isLoggedIn && <Button sx={{color:'white',mr:2,textDecoration:'none'}} onClick={()=>authCtx.logout()}>Logout</Button>}
           <ShoppingCartTwoToneIcon onClick={()=>cartCtx.openCloseCart(true)}/>
         </Toolbar>
       </Container>

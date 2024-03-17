@@ -38,12 +38,14 @@ export default function LoginForm() {
           body: JSON.stringify(userObj),
         }
       );
-      if (response.status >= 400) {
-        throw Error("Something Went Wrong in the Server");
-      }
       response = await response.json()
-      authCtx.login(response.idToken)
       console.log(response);
+      if (response.error) {
+        throw Error(response.error.message);
+      }
+      
+      authCtx.login(response.idToken)
+      
     } catch (e) {
       alert(e);
     }

@@ -40,11 +40,11 @@ export default function SignUpForm() {
           body: JSON.stringify(userObj),
         }
       );
-      if (response.status >= 400) {
-        throw Error("Something Went Wrong in the Server");
-      }
       response = await response.json()
       console.log(response);
+      if (response.error) {
+        throw Error(response.error.message);
+      }
     } catch (e) {
       alert(e);
     }
