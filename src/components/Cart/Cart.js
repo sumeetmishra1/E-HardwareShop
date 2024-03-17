@@ -9,6 +9,7 @@ import CartContext from '../../utils/CartContext';
 export default function Cart() {
   
 const CartCtx=React.useContext(CartContext)
+console.log(CartCtx.items)
   const DrawerList = (
     <Box sx={{ width: 500 }} role="presentation" >
       {CartCtx.items.map((element)=>{

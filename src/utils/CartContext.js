@@ -10,10 +10,10 @@ const CartContext = React.createContext({
 export function CartProvider(props){
     const[isCartOpen,changeCartState]=useState(false)
     const [items,changeItem]= useState([]);
+    const username = localStorage.getItem('username')
 
     function addToCart(item){
         const existingCartItemIndex = items.findIndex(val=> val.id === item.id)
-        const username = localStorage.getItem('username')
         fetch(`https://crudcrud.com/api/9f471fde5fa14a7a8d7466d4414f80d1/${username}`,{
             method:'POST',
             body:JSON.stringify(item),
@@ -42,8 +42,11 @@ export function CartProvider(props){
         changeItem([...newItem])
     }
 
-    function openCloseCart(value){
+    async function openCloseCart(value){
         changeCartState(value)
+        var item = await fetch(`https://crudcrud.com/api/9f471fde5fa14a7a8d7466d4414f80d1/${username}`)
+        item = await item.json()
+        changeItem([...item])
     }
 
     return(
