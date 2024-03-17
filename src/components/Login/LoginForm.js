@@ -9,11 +9,14 @@ import Man from "@mui/icons-material/Man";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AuthContext from "../../utils/AuthContext";
+import { NavLink } from 'react-router-dom';
+import {useHistory } from "react-router-dom";
 export default function LoginForm() {
   const [emailValue, setEmailValue] = React.useState("");
   const [phoneValue, setPhoneValue] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
   const authCtx = React.useContext(AuthContext)
+  let history = useHistory()
   const handleSubmit = async (event) => {
     setIsLoading(true);
     event.preventDefault();
@@ -43,9 +46,13 @@ export default function LoginForm() {
       if (response.error) {
         throw Error(response.error.message);
       }
-      
+    else{
+        var username = response.email.split("@")[0];
+      localStorage.setItem('username',username)
       authCtx.login(response.idToken)
-      
+      history.push('/')
+    }
+        
     } catch (e) {
       alert(e);
     }
@@ -110,6 +117,7 @@ export default function LoginForm() {
         </Box>
         {isLoading && <p>Loading....</p>}
       </Box>
+      <NavLink style={{textDecoration:'none',color:'blue'}} to={'/signup'} >Create New Account?</NavLink>
     </Container>
   );
 }

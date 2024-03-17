@@ -10,6 +10,7 @@ import Box from "@mui/material/Box";
 import Man from "@mui/icons-material/Man";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import { NavLink } from "react-router-dom";
 export default function SignUpForm() {
   const [nameValue, setNameValue] = React.useState("");
   const [emailValue, setEmailValue] = React.useState("");
@@ -130,6 +131,7 @@ export default function SignUpForm() {
         </Box>
         {isLoading && <p>Loading....</p>}
       </Box>
+      <NavLink style={{textDecoration:'none',color:'blue'}} to={'/signin'} >Already Have?</NavLink>
     </Container>
   );
 }

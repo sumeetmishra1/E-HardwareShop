@@ -13,6 +13,14 @@ export function CartProvider(props){
 
     function addToCart(item){
         const existingCartItemIndex = items.findIndex(val=> val.id === item.id)
+        const username = localStorage.getItem('username')
+        fetch(`https://crudcrud.com/api/9f471fde5fa14a7a8d7466d4414f80d1/${username}`,{
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                'Content-Type' :'application/json',
+            }
+        })
         if(existingCartItemIndex!==-1){
             items[existingCartItemIndex].quantity+=item.quantity
             changeItem((olditem)=>{
