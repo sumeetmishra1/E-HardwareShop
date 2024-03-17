@@ -3,23 +3,21 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Man from "@mui/icons-material/Man";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-export default function SignUpForm() {
-  const [nameValue, setNameValue] = React.useState("");
+import AuthContext from "../../utils/AuthContext";
+export default function LoginForm() {
   const [emailValue, setEmailValue] = React.useState("");
   const [phoneValue, setPhoneValue] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const authCtx = React.useContext(AuthContext)
   const handleSubmit = async (event) => {
     setIsLoading(true);
     event.preventDefault();
     if (
-      nameValue.length < 1 ||
       emailValue.length < 1 ||
       phoneValue.length < 1
     ) {
@@ -34,7 +32,7 @@ export default function SignUpForm() {
     };
     try {
       var response = await fetch(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDs-a9WDbEuM1KAPJyecEm9fDMLQQah-BQ",
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDs-a9WDbEuM1KAPJyecEm9fDMLQQah-BQ",
         {
           method: "POST",
           body: JSON.stringify(userObj),
@@ -44,12 +42,12 @@ export default function SignUpForm() {
         throw Error("Something Went Wrong in the Server");
       }
       response = await response.json()
+      authCtx.login(response.idToken)
       console.log(response);
     } catch (e) {
       alert(e);
     }
     setEmailValue("");
-    setNameValue("");
     setPhoneValue("");
     setIsLoading(false);
   };
@@ -69,23 +67,10 @@ export default function SignUpForm() {
           <Man/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          SignUp
+         Login
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                autoComplete="given-name"
-                name="Name"
-                required
-                fullWidth
-                id="Name"
-                label="Name"
-                autoFocus
-                value={nameValue}
-                onChange={(e) => setNameValue(e.currentTarget.value)}
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 required
@@ -109,13 +94,6 @@ export default function SignUpForm() {
                 autoComplete="Password"
                 value={phoneValue}
                 onChange={(e) => setPhoneValue(e.currentTarget.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I Accept Terms & Conditions"
-                required
               />
             </Grid>
           </Grid>

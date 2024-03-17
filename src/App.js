@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route,Switch } from 'react-router-dom';
 import Cart from './components/Cart/Cart';
 import Home from './pages/Home';
@@ -9,8 +9,10 @@ import Footer from './components/Footer/Footer';
 import { Contact } from './pages/Contact';
 import { ProductDetails } from './components/ParticularProduct/ProductDetail';
 import { SignUp } from './pages/SignUp';
+import { Login } from './pages/Login';
+import AuthContext from './utils/AuthContext';
 function App() {
-  
+  const authCtx = useContext(AuthContext)
 
   return (
     <div style={{backgroundColor:'whitesmoke'}} >
@@ -19,10 +21,14 @@ function App() {
       <Cart />
       <Switch>
       <Route path="/" exact>
-        <Home/>
+        {authCtx.isLoggedIn &&  <Home/>}
+        {!authCtx.isLoggedIn && <Login/>}
       </Route>
       <Route path = "/signup">
         <SignUp/>
+      </Route>
+      <Route path = "/signin">
+        <Login/>
       </Route>
       <Route path="/contact">
         <Contact/>
