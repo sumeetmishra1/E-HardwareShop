@@ -37,7 +37,8 @@ function App() {
         <AboutPage/>
       </Route>
       <Route path="/store" >
-        <Store/>
+        {authCtx.isLoggedIn && <Store/>}
+        {!authCtx.isLoggedIn && <Login/>}
       </Route>
       <Route path="/product-detail">
       <ProductDetails/>
